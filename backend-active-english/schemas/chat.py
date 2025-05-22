@@ -14,6 +14,7 @@ class Chat(BaseModel):
     language: str
     level: str
     created_at: datetime
+    initial_message: Optional[str] = None
 
     class Config:
         orm_mode = True
