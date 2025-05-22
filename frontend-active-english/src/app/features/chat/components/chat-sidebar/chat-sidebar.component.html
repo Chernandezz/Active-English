@@ -1,0 +1,32 @@
+<div class="w-full h-full flex flex-col text-black font-handdrawn">
+  <div class="p-4 border-b border-gray-200">
+    <h1 class="text-xl font-bold">My chats</h1>
+  </div>
+
+  <div class="flex-grow overflow-y-auto px-4 py-2 space-y-2">
+    <div *ngFor="let chat of chats$ | async" (click)="selectChat(chat.id)" class="cursor-pointer hover:underline"
+      [class.font-bold]="(currentChat$ | async)?.id === chat.id">
+      {{ chat.title }}
+    </div>
+
+    <div *ngIf="(chats$ | async)?.length === 0" class="text-center text-gray-400 text-sm mt-4">
+      No chats yet.
+    </div>
+  </div>
+
+  <div class="px-4 pt-2 pb-4">
+    <div class="flex items-center justify-between text-sm mb-3">
+      <span>Hide AI responses</span>
+      <label class="inline-flex items-center cursor-pointer">
+        <input type="checkbox" class="sr-only">
+        <div class="w-10 h-5 bg-gray-300 rounded-full shadow-inner flex items-center px-1">
+          <div class="w-4 h-4 bg-green-500 rounded-full shadow"></div>
+        </div>
+      </label>
+    </div>
+
+    <button (click)="openScenarioSelector()" class="w-full text-green-600 font-bold hover:underline">
+      + New Chat
+    </button>
+  </div>
+</div>
